@@ -12,9 +12,10 @@
 @implementation MementoCenter
 
 + (void)saveMementoObject:(id<MementoCenterPotocol>)object withKey:(NSString *)key {
+    //Para条件参数断言宏
     NSParameterAssert(object);
     NSParameterAssert(key);
-    
+
     //获取data，通过potocol确定object的那些property需要存储
     id data = [object currentState];
     NSData *tmpData = [FastCoder dataWithRootObject:data];
@@ -22,7 +23,9 @@
     //存储data
     if (tmpData) {
         [[NSUserDefaults standardUserDefaults] setObject:tmpData forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
+
 }
 
 + (id)mementoObjectWithKey:(NSString *)key {

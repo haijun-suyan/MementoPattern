@@ -22,10 +22,12 @@
 
 - (void)recoverFromStateWithKey:(NSString *)key {
     NSParameterAssert(key);
-    
+
     id <MementoCenterPotocol> obj = (id <MementoCenterPotocol>)self;
     if ([obj respondsToSelector:@selector(recoverFromStateWithKey:)]) {
         id state = [MementoCenter mementoObjectWithKey:key];
+
+
         if (state) {
             [obj recoverFromState:state];
         }
